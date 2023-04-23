@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface ContainerProps {
   bgColor: string;
+  borderColor: string;
 }
 
 const Container = styled.div<ContainerProps>`
@@ -9,14 +10,17 @@ const Container = styled.div<ContainerProps>`
   height: 200px;
   background-color: ${props => props.bgColor};
   border-radius: 50%;
+  border: 1px solid ${props => props.borderColor};
 `;
 
 interface CircleProps {   // interface는 object가 어떤식으로 보일지를 설명
   bgColor: string;
+  borderColor?: string;  // ? optional
+  text?: string;
 }
 
-function Circle({bgColor}: CircleProps) {   //bgColor의 타입은 Circleprops의 object이다 1.App.js에 보냄, 2.return Container 컴포넌트에 보냄
-  return <Container bgColor={bgColor} />;
+function Circle({bgColor, borderColor, text = "default text"}: CircleProps) {   //bgColor의 타입은 Circleprops의 object이다 1.App.js에 보냄, 2.return Container 컴포넌트에 보냄
+  return <Container bgColor={bgColor} borderColor={borderColor ?? "yellow"}>{text}</Container>;
 }
 
 export default Circle; 
